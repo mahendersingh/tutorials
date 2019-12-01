@@ -1,0 +1,107 @@
+entity Brand {
+	id String,
+    name String
+    logo String,
+    status String,
+    created Date,
+    modified Date
+}
+
+entity Model {
+	id String,
+    brandId String,
+    name String,
+    status String,
+    image String,
+    banner String,
+    created Date,
+    modified Date
+}
+
+entity Vehicle {
+	id String,
+    brandId String,
+    modelId String,
+    variant String,
+    name String,
+    desciption String,
+    color String,
+    style String,
+    fuelType String,
+    transmission String,
+    seatingCapcity String,
+    url String,
+    seats String,
+    status String,
+    created Date,
+    modified Date
+}
+
+entity Rates {
+	id String,
+    roi BigDecimal,
+    showroomprice Integer,
+    registrationPrice Integer,
+    insurancePrice Integer,
+    logisticCost Integer,
+    misCharges Integer,
+    accessoriesCharges Integer,
+    discount Integer,
+    onroadPrice Integer,
+    rvFirstYear  Integer,
+    rvSecondYear Integer,
+    rvThirdYear Integer,
+    rvForthYear Integer,
+    rvFifthYear Integer,
+    vehicleId String,
+    cityId String,
+    gst Integer,
+    roiFMS BigDecimal,
+    corporateRoadTax Integer,
+    individualRoadTax Integer,
+    maintenanceFirstYear Integer,
+    maintenanceSecondYear Integer,
+    maintenanceThirdYear Integer,
+    maintenanceForthYear Integer,
+    maintenanceFifthYear Integer,
+    insuranceDis BigDecimal,
+    admin String,
+    mileage String,
+    frankingChargesCar Integer,
+    frankingChargesFMS Integer,
+    commision Integer,
+    fms BigDecimal,
+    created Date,
+    modified Date
+}
+
+entity Customer {
+	id String,
+    firstName String,
+    lastName String,
+    email String,
+    contact String,
+    altContact String,
+    address String,
+    city String,
+    state String,
+    zip String,
+    invoice String,
+    response String,
+    created Date,
+    modified Date
+}
+
+relationship OneToMany {
+	Brand{model} to Model
+    Model{vehicle} to Vehicle
+    Vehicle{rates} to Rates
+}
+
+
+paginate Brand, Model, Vehicle, Rates  with infinite-scroll
+paginate Customer with pagination
+
+service all with serviceImpl
+
+
